@@ -26,7 +26,8 @@
                     ->method('createBuffer')
                     ->will($this->returnValue($buffer));
                  
-            $stream = IO_Stream_Buffered::create($context);
+            $stream = IO_Stream_Buffered::create();
+            $stream->setContext($context);
             
             $this->assertType('IO_Stream_Buffered', $stream);
             

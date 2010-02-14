@@ -5,14 +5,7 @@
     * запись, смена режима блокировки, закрытие). Функции, специфичные для
     * разных типов потоков, помещаются в искры (IO_Stream_Spark_*).
     */
-    class IO_Stream implements IO_Stream_Interface {
-        /**
-        * Контекст объекта.
-        * 
-        * @var IO_Stream_Context_Interface
-        */
-        protected $_context;
-        
+    class IO_Stream extends Class_Contextable_Listenable implements IO_Stream_Interface {
         /**
         * Искра потока.
         * 
@@ -26,13 +19,6 @@
         * @var resource
         */
         protected $_stream;
-        
-        /**
-        * Объект, обрабатывающий события потока.
-        * 
-        * @var IO_Stream_Listener_Interface
-        */
-        protected $_listener;
         
         /**
         * Массив флагов потока, указывающих, в каких операциях он заинтересован.
@@ -72,31 +58,18 @@
         );
         
         /**
-        * Создание нового объекта потока.
+        * Метод инициализации объекта.
         * 
-        * @param  IO_Stream_Context_Interface $context Контекст потока.
-        * @return IO_Stream
+        * @return void
         */
-        public function __construct(IO_Stream_Context_Interface $context) {
-            $this->_context = $context;
-            
-            $this->_opts = $context->createOptions();
+        protected function _init() {
+            $this->_opts = $this->getContext()->createOptions();
             $this->setOptions($this->_default_options);
             
             /* Инициализируем флаги операций */
             $this->resetAllInterest();
             $this->resetAllReady();
-            
-            /* Производим дополнительную инициализацию (if any) */
-            $this->_init();
         }
-        
-        /**
-        * Метод для дополнительной инициализации дочерних классов.
-        * 
-        * @return void
-        */
-        protected function _init() {/*_*/}
         
         /**
         * Закрытие потока при уничтожении объекта.
@@ -116,8 +89,29 @@
         * @param  IO_Stream_Context_Interface $context Контекст потока.
         * @return IO_Stream
         */
-        public static function create(IO_Stream_Context_Interface $context) {
-            return new self($context);
+        public static function create() {
+            return new self();
+        }
+        
+        /**
+        * Установка контекста потока.
+        * 
+        * @param  IO_Stream_Context_Interface $ctx
+        * @return IO_Stream Fluent interface.
+        */
+        public function setContext(IO_Stream_Context_Interface $ctx) {
+            $this->reallySetContext($ctx);
+            $this->_init();
+        }
+        
+        /**
+        * Установка слушателя событий потока.
+        * 
+        * @param  IO_Stream_Listener_Interface $listener
+        * @return IO_Stream Fluent interface.
+        */
+        public function setListener(IO_Stream_Listener_Interface $listener) {
+            return $this->reallySetListener($listener);
         }
         
         /**
@@ -150,26 +144,6 @@
         */
         public function getSpark() {
             return $this->_spark;
-        }
-        
-        /**
-        * Установка слушателя событий потока.
-        * 
-        * @param  IO_Stream_Listener_Interface $listener
-        * @return IO_Stream Fluent interface.
-        */
-        public function setListener(IO_Stream_Listener_Interface $listener) {
-            $this->_listener = $listener;
-            return $this;
-        }
-        
-        /**
-        * Получение слушателья событий потока.
-        * 
-        * @return IO_Stream_Listener_Interface
-        */
-        public function getListener() {
-            return $this->_listener;
         }
         
         /**

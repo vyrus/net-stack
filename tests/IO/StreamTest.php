@@ -21,6 +21,7 @@
                  ->method('apply');
             
             $stream = IO_Stream::create($context);
+            $stream->setContext($context);
             $this->assertType('IO_Stream', $stream);
         }
         
@@ -47,7 +48,8 @@
                   ->method('getStream')
                   ->will($this->returnValue(fopen('php://stdin', 'r')));
                  
-            $stream = IO_Stream::create($context);
+            $stream = IO_Stream::create();
+            $stream->setContext($context);
                   
             /* Fluent interface */
             $this->assertEquals($stream, $stream->setSpark($spark));
@@ -55,31 +57,6 @@
             
             $this->assertType('resource', $stream->getRawStream());
             $this->assertType('int', $stream->getId());
-        }
-        
-        /**
-        * Установка/получение слушателя.
-        */
-        public function testSetGetListener() {
-            /* Создание заглушек объектов */
-            $context  = $this->getMock('IO_Stream_Context_Interface');
-            $opts     = $this->getMock('Options_Interface');
-            $listener = $this->getMock('IO_Stream_Listener_Interface');
-            
-            /* Один раз будет создан новый объект настроек */
-            $context->expects($this->once())
-                    ->method('createOptions')
-                    ->will($this->returnValue($opts));
-            
-            /* Один раз будут установлены опции */
-            $opts->expects($this->once())
-                 ->method('apply');
-                 
-            $stream = IO_Stream::create($context);
-            
-            /* Fluent interface */
-            $this->assertEquals($stream, $stream->setListener($listener));
-            $this->assertEquals($listener, $stream->getListener());
         }
         
         /**
@@ -99,7 +76,8 @@
             $opts->expects($this->once())
                  ->method('apply');
                  
-            $stream = IO_Stream::create($context);
+            $stream = IO_Stream::create();
+            $stream->setContext($context);
             
             $read   = IO_Stream::OPERATION_READ;
             $write  = IO_Stream::OPERATION_WRITE;

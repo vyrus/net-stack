@@ -4,7 +4,7 @@
     * Интерфейс контекста объекта, который запрашивает создание объекта 
     * настроек.
     */
-    interface Context_Optable_Interface {
+    interface Class_Context_Optable_Interface extends Class_Context_Interface {
         /**
         * Возвращает новый объект настроек.
         * 

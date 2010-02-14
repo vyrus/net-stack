@@ -22,13 +22,10 @@
         /**
         * Создание нового объекта потока.
         * 
-        * @param  array|Options $options Опции потока.
         * @return IO_Stream_Buffered
         */
-        public static function create(
-            IO_Stream_Buffered_Context_Interface $context
-        ) {
-            return new self($context);
+        public static function create() {
+            return new self();
         }
         
         /**
@@ -37,8 +34,12 @@
         * @return void
         */
         protected function _init() {
-            $this->_read_buffer  = $this->_context->createBuffer();
-            $this->_write_buffer = $this->_context->createBuffer();
+            /* Вызываем метод инициализации родительского класса */
+            parent::_init();
+            
+            /* Создаём буферы */
+            $this->_read_buffer  = $this->getContext()->createBuffer();
+            $this->_write_buffer = $this->getContext()->createBuffer();
         }
                    
         /**

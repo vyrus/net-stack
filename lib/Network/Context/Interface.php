@@ -3,7 +3,7 @@
     /**
     * Интерфейс контекста службы сети.
     */
-    interface Network_Context_Interface extends Context_Optable_Interface {
+    interface Network_Context_Interface extends Class_Context_Optable_Interface {
         /**
         * Возвращает новый объект селектора потоков.
         * 

@@ -3,7 +3,7 @@
     /**
     * Интерфейс потока ввода/вывода.
     */
-    interface IO_Stream_Interface {
+    interface IO_Stream_Interface extends Class_Contextable_Listenable_Interface {
         /**
         * @var const
         */
@@ -34,6 +34,22 @@
         const MODE_BLOCKING = 1;
         
         /**
+        * Установка контекста потока.
+        * 
+        * @param  IO_Stream_Context_Interface $ctx
+        * @return IO_Stream Fluent interface.
+        */
+        public function setContext(IO_Stream_Context_Interface $ctx);
+        
+        /**
+        * Установка слушателя событий потока.
+        * 
+        * @param  IO_Stream_Listener_Interface $listener
+        * @return IO_Stream Fluent interface.
+        */
+        public function setListener(IO_Stream_Listener_Interface $listener);
+        
+        /**
         * Установка искры потока.
         * 
         * @param IO_Stream_Spark_Interface $spark
@@ -47,21 +63,6 @@
         * @return IO_Stream_Spark_Interface
         */
         public function getSpark();
-        
-        /**
-        * Установка слушателя событий потока.
-        * 
-        * @param IO_Stream_Listener_Interface $listener
-        * @return void
-        */
-        public function setListener(IO_Stream_Listener_Interface $listener);
-        
-        /**
-        * Получение слушателья событий потока.
-        * 
-        * @return IO_Stream_Listener_Interface
-        */
-        public function getListener();
         
         /**
         * Возведение флажка о заинтересованности в операции.

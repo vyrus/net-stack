@@ -3,7 +3,7 @@
     /**
     * Интерфейс обработчика событий потока.
     */
-    interface IO_Stream_Listener_Interface {
+    interface IO_Stream_Listener_Interface extends Class_Listener_Interface {
         /**
         * Обработчик события чтения данных из потока.
         * 

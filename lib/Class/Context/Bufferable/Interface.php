@@ -3,7 +3,7 @@
     /**
     * Интерфейс контекста объекта, запрашивающего создание буфера.
     */
-    interface Context_Bufferable_Interface {
+    interface Class_Context_Bufferable_Interface extends Class_Context_Interface {
         /**
         * Создание нового объекта буфера ввода/вывода.
         * 
