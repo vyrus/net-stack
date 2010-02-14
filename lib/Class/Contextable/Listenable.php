@@ -9,14 +9,14 @@
         * 
         * @var Class_Context_Interface
         */
-        protected $_ctx;
+        private $_ctx;
         
         /**
         * Обработчик событий объекта.
         * 
         * @var Class_Listener_Interface
         */
-        protected $_listener;                  
+        private $_listener;                  
         
         /**
         * Установка объекта контекста.
