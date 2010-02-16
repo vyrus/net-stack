@@ -103,7 +103,7 @@
             $opts     = $this->getMock('Options_Interface');
             $selector = $this->getMock('IO_Stream_Selector_Interface');
             $stream   = $this->getMock('IO_Stream_Buffered_Interface');
-            $listener = $this->getMock('IO_Stream_Listener_Interface');
+            $listener = $this->getMock('IO_Stream_Buffered_Listener_Interface');
             
             /* Один раз будет создан новый объект настроек */
             $context->expects($this->once())
@@ -159,7 +159,7 @@
             $opts     = $this->getMock('Options_Interface');
             $selector = $this->getMock('IO_Stream_Selector_Interface');
             $stream   = $this->getMock('IO_Stream_Buffered_Interface');
-            $listener = $this->getMock('IO_Stream_Listener_Interface');
+            $listener = $this->getMock('IO_Stream_Buffered_Listener_Interface');
             
             /* Один раз будет создан новый объект настроек */
             $context->expects($this->once())
@@ -225,7 +225,7 @@
             $opts     = $this->getMock('Options_Interface');
             $selector = $this->getMock('IO_Stream_Selector_Interface');
             $stream   = $this->getMock('IO_Stream_Buffered_Interface');
-            $listener = $this->getMock('IO_Stream_Listener_Interface');
+            $listener = $this->getMock('IO_Stream_Buffered_Listener_Interface');
             
             /* Один раз будет создан новый объект настроек */
             $context->expects($this->once())

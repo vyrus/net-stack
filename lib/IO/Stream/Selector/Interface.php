@@ -7,18 +7,18 @@
         /**
         * Регистрация потока в селекторе.
         * 
-        * @param IO_Stream_Interface $stream
+        * @param IO_Stream_Abstract_Interface $stream
         * @return void
         */
-        public function register(IO_Stream_Interface $stream);
+        public function register(IO_Stream_Abstract_Interface $stream);
         
         /**
         * Удаление потока из списка зарегистрированных.
         * 
-        * @param IO_Stream_Interface $stream
+        * @param IO_Stream_Abstract_Interface $stream
         * @return void
         */
-        public function unregister(IO_Stream_Interface $stream);
+        public function unregister(IO_Stream_Abstract_Interface $stream);
         
         /**
         * Осуществляет выбор готовых к обработке потоков из списка 

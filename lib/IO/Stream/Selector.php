@@ -68,10 +68,10 @@
         /**
         * Регистрация потока в селекторе.
         * 
-        * @param IO_Stream_Interface $stream
+        * @param IO_Stream_Abstract_Interface $stream
         * @return void
         */
-        public function register(IO_Stream_Interface $stream) {
+        public function register(IO_Stream_Abstract_Interface $stream) {
             /**
             * @todo Проверять, закрыт ли поток? Как среагирует select() на
             * закрытый поток?
@@ -89,10 +89,10 @@
         /**
         * Удаление потока из списка зарегистрированных.
         * 
-        * @param IO_Stream_Interface $stream
+        * @param IO_Stream_Abstract_Interface $stream
         * @return void
         */
-        public function unregister(IO_Stream_Interface $stream) {
+        public function unregister(IO_Stream_Abstract_Interface $stream) {
             $idx = $stream->getId();
             
             if (!isset($this->_streams[$idx])) {

@@ -65,10 +65,10 @@
         /**
         * Регистрация потока для обработки.
         * 
-        * @param  IO_Stream_Interface $stream
+        * @param  IO_Stream_Abstract_Interface $stream
         * @return void
         */
-        public function registerStream(IO_Stream_Interface $stream) {
+        public function registerStream(IO_Stream_Abstract_Interface $stream) {
             $this->_selector->register($stream);
         }
         
