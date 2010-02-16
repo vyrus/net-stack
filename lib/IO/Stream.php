@@ -4,6 +4,9 @@
     * Класс-обёртка для работы с потоками. Инкапсулирует общие функции (чтение,
     * запись, смена режима блокировки, закрытие). Функции, специфичные для
     * разных типов потоков, помещаются в искры (IO_Stream_Spark_*).
+    * 
+    * @todo Remix to IO_Stream_Simple, IO_Stream_Buffered, IO_Selector, 
+    * IO_Spark_*?
     */
     class IO_Stream extends IO_Stream_Abstract implements IO_Stream_Interface {
         /**
