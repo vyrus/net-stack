@@ -4,7 +4,7 @@
     * Класс потока ввода-вывода с буферами: чтения (в который считываются данные
     * из потока) и записи (из которого данные записываются в поток).
     */
-    class IO_Stream_Buffered extends IO_Stream implements IO_Stream_Buffered_Interface {
+    class IO_Stream_Buffered extends IO_Stream_Abstract implements IO_Stream_Buffered_Interface {
         /**
         * Буфер чтения.
         * 
@@ -41,7 +41,30 @@
             $this->_read_buffer  = $this->getContext()->createBuffer();
             $this->_write_buffer = $this->getContext()->createBuffer();
         }
-                   
+                        
+        /**
+        * Установка контекста потока.
+        * 
+        * @param  IO_Stream_Buffered_Context_Interface $ctx
+        * @return IO_Stream Fluent interface.
+        */
+        public function setContext(IO_Stream_Buffered_Context_Interface $ctx) {
+            $this->reallySetContext($ctx);
+            $this->_init();
+        }
+                        
+        /**
+        * Установка слушателя событий буферизованного потока.
+        * 
+        * @param  IO_Stream_Buffered_Listener_Interface $listener
+        * @return IO_Stream_Buffered Fluent interface.
+        */
+        public function setListener(
+            IO_Stream_Buffered_Listener_Interface $listener
+        ) {
+            return $this->reallySetListener($listener);
+        }
+                        
         /**
         * Возвращает объект буфера чтения.
         * 

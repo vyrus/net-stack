@@ -20,8 +20,9 @@
         * @param  int $bytes_written Размер записанного блока данных в байтах.
         * @return void 
         */
-        public function onStreamWrite(IO_Stream_Interface $stream,
-                                      $bytes_written);
+        public function onStreamWrite(
+            IO_Stream_Interface $stream, $bytes_written
+        );
         
         /**
         * Обработчик события закрытия потока.
